@@ -1,0 +1,18 @@
+{% extends "portal/base.html" %}
+{% block content %}
+{% if login_url %}
+<h1>Connecting you...</h1>
+<p>Your voucher is valid. You have about {{ minutes_left }} minutes of internet.</p>
+<form id="go" method="get" action="{{ login_url }}">
+  <input type="hidden" name="username" value="{{ voucher.code }}">
+  <input type="hidden" name="password" value="{{ voucher.code }}">
+  {% if dst %}<input type="hidden" name="dst" value="{{ dst }}">{% endif %}
+  <noscript><button type="submit">Continue</button></noscript>
+</form>
+<script>document.getElementById("go").submit();</script>
+{% else %}
+<h1>Voucher accepted</h1>
+<p>You have about {{ minutes_left }} minutes of internet. You can start browsing now.</p>
+<p class="hint">If pages do not open, disconnect from the Wi-Fi and connect again.</p>
+{% endif %}
+{% endblock %}

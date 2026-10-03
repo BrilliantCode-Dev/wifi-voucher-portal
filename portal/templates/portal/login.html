@@ -1,0 +1,18 @@
+{% extends "portal/base.html" %}
+{% block content %}
+<h1>{{ CAFE_NAME }}</h1>
+<p>Enter the code from your voucher to get online.</p>
+{% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+<form method="post" autocomplete="off">
+  {% csrf_token %}
+  <input type="hidden" name="mac" value="{{ mac }}">
+  <input type="hidden" name="ip" value="{{ ip }}">
+  <input type="hidden" name="login" value="{{ login }}">
+  <input type="hidden" name="dst" value="{{ dst }}">
+  <label for="code">Voucher code</label>
+  <input type="text" id="code" name="code" placeholder="K7M2-9QXA" maxlength="12"
+         autocapitalize="characters" autocorrect="off" spellcheck="false" required autofocus>
+  <button type="submit">Connect</button>
+</form>
+<p class="hint">No voucher yet? Buy one at the counter.</p>
+{% endblock %}

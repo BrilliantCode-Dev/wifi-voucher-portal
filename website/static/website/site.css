@@ -1,0 +1,90 @@
+:root {
+  --ink: #0F2A43;
+  --ink-soft: #3B5169;
+  --paper: #F6F8FB;
+  --white: #FFFFFF;
+  --yellow: #FFC531;
+  --teal: #0E8F80;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 1.0625rem/1.55 var(--body); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; }
+
+.top { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+       padding: 14px clamp(18px, 5vw, 64px); background: var(--ink); color: var(--paper); }
+.brand { font-family: var(--display); font-weight: 800; font-size: 1.25rem; text-decoration: none; }
+.top nav { display: flex; gap: clamp(14px, 3vw, 28px); }
+.top nav a { text-decoration: none; font-weight: 600; font-size: .98rem; }
+.top nav a:hover { color: var(--yellow); }
+
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center;
+        padding: clamp(40px, 8vw, 96px) clamp(18px, 5vw, 64px) clamp(56px, 9vw, 110px);
+        background: var(--ink); color: var(--paper); }
+.hero h1 { font-weight: 800; font-size: clamp(2.3rem, 5.6vw, 4.3rem); letter-spacing: -.02em; max-width: 15ch; }
+.hero p { font-size: 1.2rem; max-width: 36ch; margin: 20px 0 30px; color: #C9D6E4; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-block; padding: 13px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.btn-primary { background: var(--yellow); color: var(--ink); }
+.btn-primary:hover { background: #FFD25E; }
+.btn-ghost { border: 2px solid currentColor; }
+.hero .btn-ghost { color: var(--paper); }
+.hero .btn-ghost:hover { color: var(--yellow); }
+
+/* the voucher ticket: the thing a customer actually holds */
+.ticket-wrap { display: grid; place-items: center; }
+.ticket { display: flex; width: min(100%, 440px); transform: rotate(-3deg); color: var(--ink);
+          filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .35)); }
+.ticket-main { flex: 1; background: var(--yellow); padding: 26px 24px; border-radius: 14px 0 0 14px;
+               display: flex; flex-direction: column; gap: 10px; }
+.ticket-name { font-family: var(--display); font-weight: 800; font-size: 1.1rem; }
+.ticket-code { font-family: "Courier New", ui-monospace, monospace; font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.1rem); letter-spacing: .08em; }
+.ticket-note { font-size: .9rem; color: #5A4300; }
+.ticket-stub { width: 108px; background: var(--white); border-left: 3px dashed var(--ink); border-radius: 0 14px 14px 0;
+               display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ticket-stub span { font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1; }
+.ticket-stub small { font-weight: 600; }
+
+.section { padding: clamp(44px, 7vw, 88px) clamp(18px, 5vw, 64px); }
+.section-tint { background: var(--white); }
+.section h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); font-weight: 800; letter-spacing: -.01em; }
+.lead { color: var(--ink-soft); max-width: 52ch; margin: 12px 0 32px; }
+
+.services { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 6px 36px; }
+.services li { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid #D6DEE8; }
+.icon { flex: none; width: 46px; height: 46px; display: grid; place-items: center; font-size: 1.5rem;
+        background: var(--yellow); border-radius: 12px; }
+.services h3 { font-size: 1.12rem; font-weight: 600; }
+.services p { margin: 4px 0 0; color: var(--ink-soft); font-size: 1rem; }
+
+.packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 36px; }
+.pack { display: flex; background: var(--paper); border-radius: 12px; overflow: hidden; border: 2px solid var(--ink); }
+.pack-main { flex: 1; padding: 18px 18px; }
+.pack-main h3 { font-size: 1.25rem; font-weight: 800; }
+.pack-main p { margin: 6px 0 0; color: var(--ink-soft); }
+.pack-price { display: grid; place-items: center; min-width: 96px; padding: 0 14px; background: var(--ink); color: var(--yellow);
+              border-left: 3px dashed var(--yellow); font-family: var(--display); font-weight: 800; font-size: 1.6rem; }
+.steps { margin: 0; padding-left: 1.3rem; display: grid; gap: 8px; max-width: 56ch; }
+.steps li::marker { font-weight: 800; color: var(--teal); }
+
+.visit { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; margin-top: 20px; }
+.big { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.25; margin: 0 0 16px; }
+.hours { margin: 0; color: var(--ink-soft); }
+.contact { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.contact .btn-ghost { color: var(--ink); }
+.mail { color: var(--teal); font-weight: 600; }
+
+footer { display: flex; justify-content: space-between; gap: 12px; padding: 22px clamp(18px, 5vw, 64px); background: var(--ink); color: #9FB2C6; font-size: .95rem; }
+footer a { color: #9FB2C6; }
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; }
+  .ticket { transform: rotate(-2deg); }
+  .visit { grid-template-columns: 1fr; }
+  .top nav a:nth-child(3) { display: none; }
+}

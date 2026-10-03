@@ -1,0 +1,97 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ CAFE_NAME }}</title>
+<meta name="description" content="{{ info.tagline }} {{ info.intro }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'website/site.css' %}">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#top">{{ CAFE_NAME }}</a>
+  <nav aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#wifi">Wi-Fi</a>
+    <a href="#visit">Visit us</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>{{ info.tagline }}</h1>
+      <p>{{ info.intro }}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#services">See what we do</a>
+        <a class="btn btn-ghost" href="#visit">Find us</a>
+      </div>
+    </div>
+    <div class="ticket-wrap" aria-hidden="true">
+      <div class="ticket">
+        <div class="ticket-main">
+          <span class="ticket-name">{{ CAFE_NAME }}</span>
+          <span class="ticket-code">K7M2-9QXA</span>
+          <span class="ticket-note">Wi-Fi voucher</span>
+        </div>
+        <div class="ticket-stub"><span>1</span><small>hour</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <h2>What we do for you</h2>
+    <p class="lead">Come in with what you have. We will help you finish it.</p>
+    <ul class="services">
+      {% for s in services %}
+      <li>
+        <span class="icon" aria-hidden="true">{{ s.icon }}</span>
+        <div><h3>{{ s.title }}</h3><p>{{ s.description }}</p></div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section id="wifi" class="section section-tint">
+    <h2>Wi-Fi on your own phone or laptop</h2>
+    <p class="lead">Buy a voucher at the counter, connect to our Wi-Fi, type the code, and you are online.</p>
+    <div class="packages">
+      {% for p in packages %}
+      <div class="pack">
+        <div class="pack-main"><h3>{{ p.name }}</h3><p>{{ p.duration_label }} of internet</p></div>
+        <div class="pack-price">{{ CURRENCY }}{{ p.price|floatformat:2 }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <ol class="steps">
+      <li><strong>Buy a voucher</strong> at the counter.</li>
+      <li><strong>Connect</strong> to the {{ CAFE_NAME }} Wi-Fi.</li>
+      <li><strong>Type your code</strong> on the page that opens. Your time starts then.</li>
+    </ol>
+  </section>
+
+  <section id="visit" class="section">
+    <h2>Visit us</h2>
+    <div class="visit">
+      <div>
+        {% if info.address %}<p class="big">{{ info.address }}</p>{% endif %}
+        {% if info.opening_hours %}<p class="hours">{{ info.opening_hours|linebreaksbr }}</p>{% endif %}
+      </div>
+      <div class="contact">
+        {% if info.phone %}<a class="btn btn-primary" href="tel:{{ info.phone|cut:" " }}">Call {{ info.phone }}</a>{% endif %}
+        {% if info.whatsapp %}<a class="btn btn-ghost" href="https://wa.me/{{ info.whatsapp }}">WhatsApp us</a>{% endif %}
+        {% if info.email %}<a class="mail" href="mailto:{{ info.email }}">{{ info.email }}</a>{% endif %}
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>{{ CAFE_NAME }}</span>
+  <a href="{% url 'dashboard' %}">Staff sign in</a>
+</footer>
+</body>
+</html>
